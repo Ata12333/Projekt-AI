@@ -16,8 +16,8 @@ public class Movement : MonoBehaviour
     {  
         Vec = transform.localPosition;  
         Vec.y += Input.GetAxis("Jump") * Time.deltaTime * 20;  
-        Vec.x += Input.GetAxis("Horizontal") * Time.deltaTime * 20;  
-        Vec.z += Input.GetAxis("Vertical") * Time.deltaTime * 20;  
+        Vec.x += Input.GetAxis("Horizontal") * Time.deltaTime * 100;  
+        Vec.z += Input.GetAxis("Vertical") * Time.deltaTime * 100;  
         transform.localPosition = Vec;  
     }  
 }  
