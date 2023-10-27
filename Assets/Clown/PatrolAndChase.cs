@@ -5,14 +5,15 @@ using UnityEngine;
 public class PatrolAndChase : MonoBehaviour
 {
     [SerializeField] private Transform player;
-
     [SerializeField] private Transform[] points;
     [SerializeField] private float moveSpeed = 3;
     [SerializeField] private float targetRadius = 0.1f;
+    [SerializeField] private float visionRange = 10;
+    [SerializeField] private float visionConeAngle = 30;
+    [SerializeField] private float HearingRange = 5;
 
     private int indexOfTarget;
     private Vector3 targetPoint;
-
     private State state = State.PatrolState;
     private CharacterController controller;
 
@@ -24,13 +25,76 @@ public class PatrolAndChase : MonoBehaviour
         LookAtTarget();
     }
 
+    float GetDistanceToPlayer()
+    {
+        return
+            (player.transform.position - transform.position)
+            .magnitude;
+    }
+    
+        float GetAngleToPlayer()
+    {
+        Vector3 directionToPlayer =
+            (player.transform.position - transform.position)
+            .normalized;
+        return Vector3.Angle(transform.forward, directionToPlayer);
+    }
+
+        bool SightLineObstructed()
+    {
+        Vector3 vectorToPlayer = player.transform.position - transform.position;
+        Ray ray = new Ray(
+            transform.position,
+            vectorToPlayer);
+        RaycastHit hitInfo;
+
+        if(Physics.Raycast(ray, out hitInfo, vectorToPlayer.magnitude))
+        {
+            GameObject obj = hitInfo.collider.gameObject;
+            return obj != player;
+        }
+        return false;
+    }
+
+    bool CanSeePlayer()
+    {
+        if (GetDistanceToPlayer() < visionRange)
+        {
+            if (GetAngleToPlayer() < visionConeAngle)
+            {
+                if (!SightLineObstructed())
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool CanHearYou()
+    {
+        if (GetDistanceToPlayer() < HearingRange)
+        {    
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     void Update()
     {
         if(state == State.PatrolState)
         {
             Patrol();
         }
+        if(state == State.ChaseState)
+        {
+            Chase();
+        }
     }
+
     void NextTarget()
     {
         indexOfTarget = (indexOfTarget + 1) % points.Length;
@@ -60,10 +124,21 @@ public class PatrolAndChase : MonoBehaviour
         velocity *= moveSpeed * Time.deltaTime;
         controller.Move(velocity);
     }
+    void Chase()
+    {
+        if(!CanSeePlayer() && !CanHearYou())
+        {
+            state = State.PatrolState;
+        }
+        Vector3 velocity = targetPoint = player.transform.position;
+        velocity.Normalize();
+        velocity *= moveSpeed * Time.deltaTime;
+        controller.Move(velocity);
+    }
 
     enum State
     {
         PatrolState,
-        ChaseState
+        ChaseState,
     }
 }
