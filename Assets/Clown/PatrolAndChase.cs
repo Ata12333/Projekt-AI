@@ -28,14 +28,14 @@ public class PatrolAndChase : MonoBehaviour
     float GetDistanceToPlayer()
     {
         return
-            (player.transform.position - transform.position)
+            (player.position - transform.position)
             .magnitude;
     }
     
         float GetAngleToPlayer()
     {
         Vector3 directionToPlayer =
-            (player.transform.position - transform.position)
+            (player.position - transform.position)
             .normalized;
         return Vector3.Angle(transform.forward, directionToPlayer);
     }
@@ -51,13 +51,15 @@ public class PatrolAndChase : MonoBehaviour
         if(Physics.Raycast(ray, out hitInfo, vectorToPlayer.magnitude))
         {
             GameObject obj = hitInfo.collider.gameObject;
-            return obj != player;
+            return obj != player.gameObject;
         }
         return false;
     }
 
     bool CanSeePlayer()
     {
+        Debug.Log("Sight Line Obstructed: " + SightLineObstructed());
+
         if (GetDistanceToPlayer() < visionRange)
         {
             if (GetAngleToPlayer() < visionConeAngle)
@@ -113,6 +115,11 @@ public class PatrolAndChase : MonoBehaviour
 
     void Patrol()
     {
+        if (CanSeePlayer() || CanHearYou())
+        {
+            state = State.ChaseState;
+        }
+
         if ((transform.position - targetPoint).magnitude < targetRadius)
         {
             NextTarget();
@@ -130,10 +137,15 @@ public class PatrolAndChase : MonoBehaviour
         {
             state = State.PatrolState;
         }
-        Vector3 velocity = targetPoint = player.transform.position;
+        LookAtTarget();
+        targetPoint = player.transform.position;
+        Vector3 velocity = targetPoint - transform.position;
+        velocity.y = 0;
         velocity.Normalize();
         velocity *= moveSpeed * Time.deltaTime;
         controller.Move(velocity);
+
+        //animator.Set:bool("running",true);
     }
 
     enum State
