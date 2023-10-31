@@ -813,11 +813,11 @@ MonoBehaviour:
   - {fileID: 827202319}
   - {fileID: 1546864580}
   - {fileID: 116421974}
-  moveSpeed: 40
+  moveSpeed: 50
   targetRadius: 0.1
-  visionRange: 10
-  visionConeAngle: 30
-  HearingRange: 5
+  visionRange: 200
+  visionConeAngle: 90
+  HearingRange: 150
 --- !u!143 &96377479
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6837,7 +6837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bab5b10ec0375bf4ba8681ff6fa724dc, type: 3}
       propertyPath: m_Name
-      value: Klovn-2
+      value: Clown
       objectReference: {fileID: 0}
     - target: {fileID: 8417361359673230750, guid: bab5b10ec0375bf4ba8681ff6fa724dc, type: 3}
       propertyPath: m_Materials.Array.data[0]
