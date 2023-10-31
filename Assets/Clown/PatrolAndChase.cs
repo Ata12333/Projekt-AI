@@ -21,7 +21,7 @@ public class PatrolAndChase : MonoBehaviour
     void Start()
     {
         animator = this.GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         controller = GetComponent<CharacterController>();
         indexOfTarget = -1;
         NextTarget();
