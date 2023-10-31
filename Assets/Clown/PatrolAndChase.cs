@@ -27,6 +27,7 @@ public class PatrolAndChase : MonoBehaviour
         indexOfTarget = -1;
         NextTarget();
         LookAtTarget();
+        agent.SetDestination(targetPoint);
     }
 
     float GetDistanceToPlayer()
@@ -117,6 +118,7 @@ public class PatrolAndChase : MonoBehaviour
 
     void Patrol()
     {
+        Debug.Log("Target point: " + points[indexOfTarget].name);
         if (CanSeePlayer() || CanHearYou())
         {
             state = State.ChaseState;
@@ -124,16 +126,18 @@ public class PatrolAndChase : MonoBehaviour
             return;
         }
 
-        if ((transform.position - targetPoint).magnitude < targetRadius)
+        if ((targetPoint-transform.position).magnitude < agent.radius)
         {
+            Debug.Log("Switching point");
             NextTarget();
             LookAtTarget();
         }
-        Vector3 velocity = targetPoint - transform.position;
-        velocity.y = 0;
-        velocity.Normalize();
-        velocity *= moveSpeed * Time.deltaTime;
-        controller.Move(velocity);
+        agent.SetDestination(targetPoint);
+        // Vector3 velocity = targetPoint - transform.position;
+        // velocity.y = 0;
+        // velocity.Normalize();
+        // velocity *= moveSpeed * Time.deltaTime;
+        // controller.Move(velocity);
         animator.SetBool("running", false);
 
     }
@@ -147,6 +151,7 @@ public class PatrolAndChase : MonoBehaviour
             return;
         }
         LookAtTarget();
+        agent.SetDestination(targetPoint);
         targetPoint = player.transform.position;
         Vector3 velocity = targetPoint - transform.position;
         velocity.y = 0;
