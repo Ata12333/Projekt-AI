@@ -1309,6 +1309,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< Updated upstream
 --- !u!1001 &98156805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1394,6 +1395,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b986572c68785441aaace3f21ea5064, type: 3}
+=======
+--- !u!195 &96377486
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96377477}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 20
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+>>>>>>> Stashed changes
 --- !u!1001 &105368503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8409,6 +8434,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bab5b10ec0375bf4ba8681ff6fa724dc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 96377484}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bab5b10ec0375bf4ba8681ff6fa724dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 96377486}
   m_SourcePrefab: {fileID: 100100000, guid: bab5b10ec0375bf4ba8681ff6fa724dc, type: 3}
 --- !u!1001 &730640661
 PrefabInstance:
@@ -17364,7 +17392,7 @@ GameObject:
   - component: {fileID: 1722721731}
   - component: {fileID: 1722721730}
   - component: {fileID: 1722721733}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
