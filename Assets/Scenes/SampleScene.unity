@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.09914409, g: 0.10274225, b: 0.09655952, a: 1}
+  m_IndirectSpecularColor: {r: 0.08050852, g: 0.074587785, b: 0.058474444, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -813,7 +813,7 @@ MonoBehaviour:
   - {fileID: 827202319}
   - {fileID: 1546864580}
   - {fileID: 116421974}
-  moveSpeed: 50
+  moveSpeed: 60
   targetRadius: 0.1
   visionRange: 200
   visionConeAngle: 90

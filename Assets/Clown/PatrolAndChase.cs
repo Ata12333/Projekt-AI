@@ -16,9 +16,11 @@ public class PatrolAndChase : MonoBehaviour
     private Vector3 targetPoint;
     private State state = State.PatrolState;
     private CharacterController controller;
+    Animator animator;
 
     void Start()
     {
+        animator = this.GetComponent<Animator>(); 
         controller = GetComponent<CharacterController>();
         indexOfTarget = -1;
         NextTarget();
@@ -58,8 +60,6 @@ public class PatrolAndChase : MonoBehaviour
 
     bool CanSeePlayer()
     {
-        Debug.Log("Sight Line Obstructed: " + SightLineObstructed());
-
         if (GetDistanceToPlayer() < visionRange)
         {
             if (GetAngleToPlayer() < visionConeAngle)
@@ -87,6 +87,7 @@ public class PatrolAndChase : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(state);
         if(state == State.PatrolState)
         {
             Patrol();
@@ -119,8 +120,6 @@ public class PatrolAndChase : MonoBehaviour
         {
             state = State.ChaseState;
             GetComponent<AudioSource>().Play();
-            
-
         }
 
         if ((transform.position - targetPoint).magnitude < targetRadius)
@@ -128,11 +127,13 @@ public class PatrolAndChase : MonoBehaviour
             NextTarget();
             LookAtTarget();
         }
-
         Vector3 velocity = targetPoint - transform.position;
+        velocity.y = 0;
         velocity.Normalize();
         velocity *= moveSpeed * Time.deltaTime;
         controller.Move(velocity);
+        animator.SetBool("running", false);
+
     }
     void Chase()
     {
@@ -147,8 +148,8 @@ public class PatrolAndChase : MonoBehaviour
         velocity.Normalize();
         velocity *= moveSpeed * Time.deltaTime;
         controller.Move(velocity);
+        animator.SetBool("running", true);
 
-        //animator.Set:bool("running",true);
     }
 
     enum State
