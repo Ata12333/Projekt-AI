@@ -87,7 +87,6 @@ public class PatrolAndChase : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
         if(state == State.PatrolState)
         {
             Patrol();
@@ -120,6 +119,7 @@ public class PatrolAndChase : MonoBehaviour
         {
             state = State.ChaseState;
             GetComponent<AudioSource>().Play();
+            return;
         }
 
         if ((transform.position - targetPoint).magnitude < targetRadius)
@@ -140,6 +140,9 @@ public class PatrolAndChase : MonoBehaviour
         if(!CanSeePlayer() && !CanHearYou())
         {
             state = State.PatrolState;
+            NextTarget();
+            LookAtTarget();
+            return;
         }
         LookAtTarget();
         targetPoint = player.transform.position;
