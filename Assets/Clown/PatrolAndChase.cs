@@ -20,7 +20,8 @@ public class PatrolAndChase : MonoBehaviour
 
     void Start()
     {
-        animator = this.GetComponent<Animator>(); 
+        animator = this.GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         controller = GetComponent<CharacterController>();
         indexOfTarget = -1;
         NextTarget();
