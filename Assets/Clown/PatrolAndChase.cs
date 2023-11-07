@@ -128,16 +128,10 @@ public class PatrolAndChase : MonoBehaviour
 
         if ((targetPoint-transform.position).magnitude < agent.radius)
         {
-            Debug.Log("Switching point");
             NextTarget();
             LookAtTarget();
         }
         agent.SetDestination(targetPoint);
-        // Vector3 velocity = targetPoint - transform.position;
-        // velocity.y = 0;
-        // velocity.Normalize();
-        // velocity *= moveSpeed * Time.deltaTime;
-        // controller.Move(velocity);
         animator.SetBool("running", false);
 
     }
