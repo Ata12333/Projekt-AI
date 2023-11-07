@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class heatbeat : MonoBehaviour
+public class heartbeat : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public AudioSource heartbeatSound;
+    private bool heartbeatEnabled = false;
+
+    public void EnableHeartbeat() {
+        heartbeatEnabled = true;
     }
 
-    // Update is called once per frame
+    public void DisableHeartbeat() {
+        heartbeatEnabled = false;
+    }
     void Update()
     {
-        
+        if (heartbeatEnabled)
+         {
+            heartbeatSound.enabled = true;
+         }
+         else
+         {
+            heartbeatSound.enabled = false;
+         }
     }
 }
+
