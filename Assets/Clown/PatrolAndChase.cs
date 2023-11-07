@@ -118,11 +118,9 @@ public class PatrolAndChase : MonoBehaviour
 
     void Patrol()
     {
-        Debug.Log("Target point: " + points[indexOfTarget].name);
         if (CanSeePlayer() || CanHearYou())
         {
             state = State.ChaseState;
-            GetComponent<AudioSource>().Play();
             return;
         }
 
