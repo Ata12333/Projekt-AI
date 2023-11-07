@@ -121,6 +121,7 @@ public class PatrolAndChase : MonoBehaviour
         if (CanSeePlayer() || CanHearYou())
         {
             state = State.ChaseState;
+            player.GetComponent<heartbeat>().EnableHeartbeat();
             return;
         }
 
@@ -140,6 +141,7 @@ public class PatrolAndChase : MonoBehaviour
             state = State.PatrolState;
             NextTarget();
             LookAtTarget();
+            player.GetComponent<heartbeat>().DisableHeartbeat();
             return;
         }
         LookAtTarget();
