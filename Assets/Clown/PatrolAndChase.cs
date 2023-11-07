@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PatrolAndChase : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class PatrolAndChase : MonoBehaviour
     [SerializeField] private float visionRange = 10;
     [SerializeField] private float visionConeAngle = 30;
     [SerializeField] private float HearingRange = 5;
+    public int Respawn;
 
     private int indexOfTarget;
     private Vector3 targetPoint;
     private State state = State.PatrolState;
     private CharacterController controller;
+
+    
     Animator animator;
     UnityEngine.AI.NavMeshAgent agent;
 
@@ -61,6 +65,10 @@ public class PatrolAndChase : MonoBehaviour
         return false;
     }
 
+    bool HasCaughtPlayer() {
+        return GetDistanceToPlayer() < 30;
+    }
+
     bool CanSeePlayer()
     {
         if (GetDistanceToPlayer() < visionRange)
@@ -90,6 +98,10 @@ public class PatrolAndChase : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Distance: " + GetDistanceToPlayer());
+        if(HasCaughtPlayer()) {
+            SceneManager.LoadScene(Respawn);
+        }
         if(state == State.PatrolState)
         {
             Patrol();
