@@ -134,6 +134,8 @@ public class PatrolAndChase : MonoBehaviour
         {
             state = State.ChaseState;
             player.GetComponent<heartbeat>().EnableHeartbeat();
+            player.GetComponent<laugh>().EnableLaugh();
+            player.GetComponent<intensemusic>().EnableIntenseMusic();
             return;
         }
 
@@ -154,6 +156,8 @@ public class PatrolAndChase : MonoBehaviour
             NextTarget();
             LookAtTarget();
             player.GetComponent<heartbeat>().DisableHeartbeat();
+            player.GetComponent<laugh>().DisableLaugh();
+            player.GetComponent<intensemusic>().DisableIntenseMusic();
             return;
         }
         LookAtTarget();
