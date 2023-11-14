@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.09914409, g: 0.10274225, b: 0.09655952, a: 1}
+  m_IndirectSpecularColor: {r: 0.13158882, g: 0.13048792, b: 0.11096407, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1136,7 +1136,7 @@ GameObject:
   - component: {fileID: 68557503}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Stearinlys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1284,7 +1284,7 @@ GameObject:
   - component: {fileID: 74444895}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Stearinlys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7318,6 +7318,7 @@ GameObject:
   - component: {fileID: 394714826}
   - component: {fileID: 394714825}
   - component: {fileID: 394714827}
+  - component: {fileID: 394714829}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7682,6 +7683,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartbeatSound: {fileID: 599530695}
+--- !u!114 &394714829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394714813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d77e40eb6a7002640b082ac099f0c291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &394996678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17665,7 +17678,7 @@ GameObject:
   - component: {fileID: 1012496817}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Stearinlys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20048,7 +20061,7 @@ GameObject:
   - component: {fileID: 1175503495}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Stearinlys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28661,7 +28674,7 @@ GameObject:
   - component: {fileID: 1705294157}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Stearinlys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

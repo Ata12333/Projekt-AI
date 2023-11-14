@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class WinCondition : MonoBehaviour
+
+// Search for GameObjects with a tag that is not used
+
+public class Example : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        GameObject[] gameObjects;
+        gameObjects = GameObject.FindGameObjectsWithTag("Stearinlys");
+        if (gameObjects.Length == 0)
+        {
+           SceneManager.LoadScene("WinScreen");
+        }
     }
 }
